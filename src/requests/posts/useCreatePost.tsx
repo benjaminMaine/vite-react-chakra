@@ -36,7 +36,10 @@ export const useCreatePost = (options = {}) => {
       // Optimistically update to the new value
       queryClient.setQueryData<Post[]>(
         [QUERY_KEYS.POSTS.FIND_ALL],
-        (oldPosts = []) => [...oldPosts, { ...newPostDTO, id: 0 }]
+        (oldPosts = []) => [
+          ...oldPosts,
+          { ...newPostDTO, description: 'optimistic update went wrong', id: 0 },
+        ]
       );
 
       return previousPosts;
