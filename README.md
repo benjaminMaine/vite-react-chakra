@@ -40,12 +40,12 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 4. Install dependencies.
 
    ```bash
-   yarn
+   pnpm
    ```
 
 5. Serve with hot reload at http://localhost:5173.
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 ## Recommended VS Code extensions
@@ -60,28 +60,28 @@ This is a [React](https://reactjs.org) + [TypeScript](https://www.typescriptlang
 
 - Run eslint
   ```bash
-  yarn lint
+  pnpm lint
   ```
 - Run eslint with fixing
   ```bash
-  yarn lint:fix
+  pnpm lint:fix
   ```
 
 ### Build commands
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ### Test commands
 
 - Run tests with coverage (will open the coverage if all tests succeed)
   ```bash
-  yarn test
+  pnpm test
   ```
 - Watch tests
   ```bash
-  yarn test:watch
+  pnpm test:watch
   ```
 
 ### Commit commands
@@ -89,7 +89,7 @@ This project use [commitlint](https://github.com/conventional-changelog/commitli
 
 To help you build more efficient commit messages, you can use the [commitizen](https://github.com/commitizen/cz-cli) package by running this command :
 ```bash
-yarn cz
+pnpm cz
 ```
 
 ## License

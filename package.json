@@ -1,10 +1,10 @@
 {
-  "name": "vibrant",
+  "name": "vite-react-chakra",
   "version": "0.0.0",
   "author": {
     "name": "Benjamin Maine",
     "email": "benjamin.maine@gmail.com",
-    "url": "https://github.com/The24thDS"
+    "url": "https://github.com/benjaminMaine/vite-react-chakra"
   },
   "private": true,
   "license": "MIT",
@@ -27,8 +27,12 @@
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@react-buddy/palette-chakra-ui": "^2.3.1",
     "@tanstack/react-query": "^5.10.0",
+    "@tanstack/react-table": "^8.10.7",
+    "axios": "^1.6.2",
     "framer-motion": "^8.5.2",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -36,10 +40,13 @@
     "@babel/core": "^7.17.5",
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@react-buddy/ide-toolbox": "^2.4.0",
     "@tanstack/eslint-plugin-query": "^5.10.0",
+    "@tanstack/react-query-devtools": "^5.10.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.6",
+    "@types/lodash": "^4.14.202",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
@@ -63,5 +70,8 @@
     "ts-jest": "^29.0.5",
     "typescript": "^4.5.5",
     "vite": "^4.0.4"
+  },
+  "resolutions": {
+    "@chakra-ui/icons": "^2.0.17"
   }
 }
