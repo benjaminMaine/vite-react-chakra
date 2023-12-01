@@ -1,6 +1,8 @@
 import { ChangeEventHandler } from 'react';
 
-import { Input, InputGroup } from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+
+import { useFindAllPosts } from '../requests/posts/useFindAllPosts';
 
 export const SearchBar = ({
   searchText,
@@ -8,17 +10,24 @@ export const SearchBar = ({
 }: {
   searchText: string;
   onChangeSearchText: ChangeEventHandler<HTMLInputElement>;
-}) => (
-  <InputGroup size="md">
-    <Input
-      placeholder="Search.."
-      value={searchText}
-      onChange={onChangeSearchText}
-    />
-    {/* <InputRightElement width="4.5rem" pr={3}> */}
-    {/*   <Button h="1.75rem" size="sm"> */}
-    {/*     Search */}
-    {/*   </Button> */}
-    {/* </InputRightElement> */}
-  </InputGroup>
-);
+}) => {
+  const { refetch } = useFindAllPosts(searchText);
+  const handleClickSearch = () => {
+    refetch();
+  };
+
+  return (
+    <InputGroup size="md">
+      <Input
+        placeholder="Search.."
+        value={searchText}
+        onChange={onChangeSearchText}
+      />
+      <InputRightElement width="4.5rem" pr={3}>
+        <Button h="1.75rem" size="sm" onClick={handleClickSearch}>
+          Search
+        </Button>
+      </InputRightElement>
+    </InputGroup>
+  );
+};
