@@ -11,8 +11,16 @@ import { useFindAllPosts } from '../requests/posts/useFindAllPosts';
 
 import { SpinnerLoader } from './SpinnerLoader';
 
-export const Orderedlist = ({ searchText }: { searchText: string }) => {
-  const { data: postsData, isLoading } = useFindAllPosts(searchText);
+export const Orderedlist = ({
+  isSearchOn,
+  searchText,
+}: {
+  isSearchOn: boolean;
+  searchText: string;
+}) => {
+  const { data: postsData, isLoading } = useFindAllPosts(searchText, {
+    enabled: isSearchOn,
+  });
 
   return isLoading ? (
     <SpinnerLoader />

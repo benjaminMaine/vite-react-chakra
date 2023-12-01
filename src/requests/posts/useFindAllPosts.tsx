@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { lowerCase } from 'lodash';
 
-import { useQuery } from '@tanstack/react-query';
+import {
+  QueryKey,
+  QueryObserverOptions,
+  useQuery,
+} from '@tanstack/react-query';
 
 import { REQUEST_DELAY, STALE_TIME } from '../../constants';
 import { Post } from '../../types/post';
@@ -25,10 +29,13 @@ const queryFn = (searchText: string): Promise<Post[]> =>
     }, REQUEST_DELAY);
   });
 
-export const useFindAllPosts = (searchText: string) =>
-  useQuery({
+export const useFindAllPosts = (
+  searchText: string,
+  options?: QueryObserverOptions
+) =>
+  useQuery<string, unknown, Post[], QueryKey>({
     queryKey: [QUERY_KEYS.POSTS.FIND_ALL, searchText],
     queryFn: () => queryFn(searchText),
     staleTime: STALE_TIME,
-    enabled: false,
+    ...options,
   });
