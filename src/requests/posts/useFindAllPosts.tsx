@@ -30,4 +30,5 @@ export const useFindAllPosts = (searchText: string) =>
     queryKey: [QUERY_KEYS.POSTS.FIND_ALL, searchText],
     queryFn: () => queryFn(searchText),
     staleTime: STALE_TIME,
+    enabled: false,
   });
