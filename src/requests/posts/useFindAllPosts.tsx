@@ -1,17 +1,15 @@
 import axios from 'axios';
+import { lowerCase } from 'lodash';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { REFETCH_INTERVAL, REQUEST_DELAY, STALE_TIME } from '../../constants';
+import { REQUEST_DELAY, STALE_TIME } from '../../constants';
 import { Post } from '../../types/post';
 import { QUERY_KEYS } from '../keys';
 
-const queryFn = (): Promise<Post[]> =>
+const queryFn = (searchText: string): Promise<Post[]> =>
   new Promise((resolve) => {
     setTimeout(() => {
-<<<<<<< Updated upstream
-      resolve(axios.get('http://localhost:5000/posts').then((res) => res.data));
-=======
       axios.get('http://localhost:5001/posts').then((res) => {
         if (!res.data) {
           return resolve([]);
@@ -24,14 +22,12 @@ const queryFn = (): Promise<Post[]> =>
             : res.data
         );
       });
->>>>>>> Stashed changes
     }, REQUEST_DELAY);
   });
 
-export const useFindAllPosts = () =>
+export const useFindAllPosts = (searchText: string) =>
   useQuery({
     queryKey: [QUERY_KEYS.POSTS.FIND_ALL],
-    queryFn,
+    queryFn: () => queryFn(searchText),
     staleTime: STALE_TIME,
-    refetchInterval: REFETCH_INTERVAL,
   });
