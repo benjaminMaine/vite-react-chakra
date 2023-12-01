@@ -9,6 +9,11 @@ import ThemeToggleButton from './components/ThemeToggleButton';
 
 function App() {
   const [searchText, setSearchText] = useState('');
+  const [isSearchOn, setIsSearchOn] = useState(true);
+
+  const handleToggleSearch = () => {
+    setIsSearchOn((oldValue) => !oldValue);
+  };
   const handleChangeSearchText: ChangeEventHandler<HTMLInputElement> = ({
     target: { value },
   }) => {
@@ -18,10 +23,12 @@ function App() {
   return (
     <Stack gap={4} p={8}>
       <SearchBar
-        searchText={searchText}
+        isSearchOn={isSearchOn}
         onChangeSearchText={handleChangeSearchText}
+        onToggleSearch={handleToggleSearch}
+        searchText={searchText}
       />
-      <Orderedlist searchText={searchText} />
+      <Orderedlist isSearchOn={isSearchOn} searchText={searchText} />
       <ThemeToggleButton pos="fixed" bottom="2" right="2" />
       <AddPostModal />
     </Stack>
