@@ -20,15 +20,16 @@ import { useCreatePost } from '../requests/posts/useCreatePost';
 
 export const AddPostModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { mutate: createPostMutate } = useCreatePost({ onSuccess: onClose });
+  const { mutateAsync: createPostMutate } = useCreatePost();
   const [title, setTitle] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState<string | undefined>(undefined);
   const [author, setAuthor] = useState<string | undefined>(undefined);
 
-  const handleSubmit: FormEventHandler = (e) => {
+  const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
     if (title && author) {
-      createPostMutate({ title, author, description });
+      await createPostMutate({ title, author, description });
+      onClose();
     }
   };
   return (
