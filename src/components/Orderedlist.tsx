@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 
 import {
   Divider,
@@ -12,11 +12,7 @@ import { useFindAllPosts } from '../requests/posts/useFindAllPosts';
 import { SpinnerLoader } from './SpinnerLoader';
 
 export const Orderedlist = ({ searchText }: { searchText: string }) => {
-  const { data: postsData, isLoading, refetch } = useFindAllPosts(searchText);
-
-  useEffect(() => {
-    refetch();
-  }, [searchText, refetch]);
+  const { data: postsData, isLoading } = useFindAllPosts(searchText);
 
   return isLoading ? (
     <SpinnerLoader />
