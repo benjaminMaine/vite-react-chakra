@@ -1,13 +1,6 @@
 import { ChangeEventHandler, useState } from 'react';
 
-import {
-  Button,
-  FormControl,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Stack,
-} from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 
 import { AddPostModal } from './components/AddPostModal';
 import { Orderedlist } from './components/Orderedlist';
