@@ -7,9 +7,9 @@ import ThemeToggleButton from './components/ThemeToggleButton';
 import { useFindAllPosts } from './requests/posts/useFindAllPosts';
 
 function App() {
-  const { data: postsData, isLoading, isFetching } = useFindAllPosts();
+  const { data: postsData, isLoading } = useFindAllPosts();
 
-  return isLoading || isFetching ? (
+  return isLoading ? (
     <Center mt={8}>
       <Spinner />
     </Center>
