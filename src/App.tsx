@@ -1,24 +1,34 @@
-import { Center, FormControl, Input, Spinner, Stack } from '@chakra-ui/react';
+import { ChangeEventHandler, useState } from 'react';
+
+import {
+  Button,
+  FormControl,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+} from '@chakra-ui/react';
 
 import { AddPostModal } from './components/AddPostModal';
-import { columnsTable } from './components/DataTable/columns';
-import { DataTable } from './components/DataTable/DataTable';
+import { Orderedlist } from './components/Orderedlist';
+import { SearchBar } from './components/SearchBar';
 import ThemeToggleButton from './components/ThemeToggleButton';
-import { useFindAllPosts } from './requests/posts/useFindAllPosts';
 
 function App() {
-  const { data: postsData, isLoading } = useFindAllPosts();
+  const [searchText, setSearchText] = useState('');
+  const handleChangeSearchText: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value },
+  }) => {
+    setSearchText(value);
+  };
 
-  return isLoading ? (
-    <Center mt={8}>
-      <Spinner />
-    </Center>
-  ) : (
+  return (
     <Stack gap={4} p={8}>
-      <FormControl>
-        <Input placeholder="Search.." />
-      </FormControl>
-      {postsData && <DataTable columns={columnsTable} data={postsData} />}
+      <SearchBar
+        searchText={searchText}
+        onChangeSearchText={handleChangeSearchText}
+      />
+      <Orderedlist searchText={searchText} />
       <ThemeToggleButton pos="fixed" bottom="2" right="2" />
       <AddPostModal />
     </Stack>
