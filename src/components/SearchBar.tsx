@@ -1,33 +1,33 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
-import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
-
-import { useFindAllPosts } from '../requests/posts/useFindAllPosts';
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Switch,
+  useDisclosure,
+} from '@chakra-ui/react';
 
 export const SearchBar = ({
-  searchText,
+  isSearchOn,
   onChangeSearchText,
+  onToggleSearch,
+  searchText,
 }: {
+  isSearchOn: boolean;
   searchText: string;
   onChangeSearchText: ChangeEventHandler<HTMLInputElement>;
-}) => {
-  const { refetch } = useFindAllPosts(searchText);
-  const handleClickSearch = () => {
-    refetch();
-  };
-
-  return (
+  onToggleSearch: () => void;
+}) => (
+  <>
+    <Switch isChecked={isSearchOn} onChange={onToggleSearch} />
     <InputGroup size="md">
       <Input
         placeholder="Search.."
         value={searchText}
         onChange={onChangeSearchText}
       />
-      <InputRightElement width="4.5rem" pr={3}>
-        <Button h="1.75rem" size="sm" onClick={handleClickSearch}>
-          Search
-        </Button>
-      </InputRightElement>
     </InputGroup>
-  );
-};
+  </>
+);
