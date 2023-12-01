@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { REQUEST_DELAY } from '../../constants';
+import { REFETCH_INTERVAL, REQUEST_DELAY, STALE_TIME } from '../../constants';
 import { Post } from '../../types/post';
 import { QUERY_KEYS } from '../keys';
 
@@ -32,5 +32,6 @@ export const useFindAllPosts = () =>
   useQuery({
     queryKey: [QUERY_KEYS.POSTS.FIND_ALL],
     queryFn,
-    staleTime: 1000 * 2,
+    staleTime: STALE_TIME,
+    refetchInterval: REFETCH_INTERVAL,
   });
