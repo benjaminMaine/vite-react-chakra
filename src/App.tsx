@@ -1,78 +1,37 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
-import { Box, Button, Flex, Image, Link, Text } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 
+import { AddPostModal } from './components/AddPostModal';
+import { Orderedlist } from './components/Orderedlist';
+import { SearchBar } from './components/SearchBar';
 import ThemeToggleButton from './components/ThemeToggleButton';
-import logo from './logo.svg';
 
-const textFontSizes = [16, 18, 24, 30];
+function App() {
+  const [searchText, setSearchText] = useState('');
+  const [isSearchOn, setIsSearchOn] = useState(true);
 
-function App(): JSX.Element {
-  const [count, setCount] = useState(0);
+  const handleToggleSearch = () => {
+    setIsSearchOn((oldValue) => !oldValue);
+  };
+  const handleChangeSearchText: ChangeEventHandler<HTMLInputElement> = ({
+    target: { value },
+  }) => {
+    setSearchText(value);
+  };
 
   return (
-    <Box>
-      <Flex
-        as="header"
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        h="100vh"
-        fontSize="3xl"
-      >
-        <motion.div
-          animate={{ rotateZ: 360 }}
-          transition={{
-            repeat: Infinity,
-            duration: 2,
-            ease: 'linear',
-          }}
-        >
-          <Image src={logo} alt="" h="40vmin" />
-        </motion.div>
-        <Text fontSize={textFontSizes}>
-          Hello Vite + React + Typescript + Chakra UI!
-        </Text>
-        <Button
-          colorScheme="blue"
-          fontSize={textFontSizes}
-          onClick={() => setCount((c) => c + 1)}
-          marginTop="2"
-        >
-          count is: {count}
-        </Button>
-        <Text fontSize={textFontSizes}>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </Text>
-        <Text fontSize={textFontSizes}>
-          <Link href="https://reactjs.org" isExternal color="#61dafb">
-            Learn React
-          </Link>
-          {' | '}
-          <Link
-            href="https://vitejs.dev/guide/features.html"
-            isExternal
-            color="#61dafb"
-          >
-            Vite Docs
-          </Link>
-          {' | '}
-          <Link
-            href="https://www.typescriptlang.org/"
-            isExternal
-            color="#61dafb"
-          >
-            Typescript
-          </Link>
-          {' | '}
-          <Link href="https://chakra-ui.com" isExternal color="#61dafb">
-            Chakra UI
-          </Link>
-        </Text>
-      </Flex>
+    <Stack gap={4} p={8}>
+      <SearchBar
+        isSearchOn={isSearchOn}
+        onChangeSearchText={handleChangeSearchText}
+        onToggleSearch={handleToggleSearch}
+        searchText={searchText}
+      />
+      <Orderedlist isSearchOn={isSearchOn} searchText={searchText} />
       <ThemeToggleButton pos="fixed" bottom="2" right="2" />
-    </Box>
+      <AddPostModal />
+    </Stack>
   );
 }
 

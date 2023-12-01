@@ -1,16 +1,16 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { IconButton, IconButtonProps, useColorMode } from '@chakra-ui/react';
+import { ColorMode, IconButton, IconButtonProps, useColorMode } from "@chakra-ui/react";
 import styled from '@emotion/styled';
 
 import transientOptions from '../utils/general';
 
-// PROP TYPES
 type ThemeToggleButtonProps = Omit<IconButtonProps, 'aria-label'>;
 
-// CONSTS and LETS
 const iconSize = 20;
 
-const RoundButton = styled(IconButton, transientOptions)`
+const RoundButton = styled(IconButton, transientOptions)<{
+  $colorMode: ColorMode;
+}>`
   box-shadow: 0 0 100px 20px
     ${({ $colorMode }) => ($colorMode === 'light' ? 'black' : 'white')};
   & svg {
