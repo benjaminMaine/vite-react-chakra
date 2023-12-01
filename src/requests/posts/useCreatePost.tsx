@@ -8,7 +8,11 @@ type CreatePostDTO = Omit<Post, 'id'>;
 
 const mutationFn = (data: CreatePostDTO): Promise<Post> =>
   axios
+<<<<<<< Updated upstream
     .post('http://localhost:5000/posts', data, {
+=======
+    .post('http://localhost:5001/posts', newPostDTO, {
+>>>>>>> Stashed changes
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',

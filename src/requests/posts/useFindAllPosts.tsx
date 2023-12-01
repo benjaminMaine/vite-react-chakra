@@ -9,7 +9,22 @@ import { QUERY_KEYS } from '../keys';
 const queryFn = (): Promise<Post[]> =>
   new Promise((resolve) => {
     setTimeout(() => {
+<<<<<<< Updated upstream
       resolve(axios.get('http://localhost:5000/posts').then((res) => res.data));
+=======
+      axios.get('http://localhost:5001/posts').then((res) => {
+        if (!res.data) {
+          return resolve([]);
+        }
+        return resolve(
+          searchText
+            ? res.data.filter(({ title }: Post) =>
+                lowerCase(title).includes(lowerCase(searchText))
+              )
+            : res.data
+        );
+      });
+>>>>>>> Stashed changes
     }, REQUEST_DELAY);
   });
 
