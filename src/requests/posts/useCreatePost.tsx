@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-import { MutateOptions, useMutation } from '@tanstack/react-query';
+import {
+  MutateOptions,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 import { Post } from '../../types/post';
+import { QUERY_KEYS } from '../keys';
 
 type CreatePostDTO = Omit<Post, 'id'>;
 
@@ -17,8 +22,13 @@ const mutationFn = (data: CreatePostDTO): Promise<Post> =>
 
 export const useCreatePost = (
   options: MutateOptions<Post, unknown, CreatePostDTO> | undefined = undefined
-) =>
-  useMutation<Post, unknown, CreatePostDTO>({
+) => {
+  const queryClient = useQueryClient();
+  return useMutation<Post, unknown, CreatePostDTO>({
     mutationFn,
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.POSTS.FIND_ALL] });
+    },
     ...options,
   });
+};
