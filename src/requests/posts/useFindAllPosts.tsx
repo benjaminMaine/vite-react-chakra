@@ -27,7 +27,7 @@ const queryFn = (searchText: string): Promise<Post[]> =>
 
 export const useFindAllPosts = (searchText: string) =>
   useQuery({
-    queryKey: [QUERY_KEYS.POSTS.FIND_ALL],
+    queryKey: [QUERY_KEYS.POSTS.FIND_ALL, searchText],
     queryFn: () => queryFn(searchText),
     staleTime: STALE_TIME,
   });

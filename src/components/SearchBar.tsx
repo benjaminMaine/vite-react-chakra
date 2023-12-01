@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 
-import { Button, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { Input, InputGroup } from '@chakra-ui/react';
 
 export const SearchBar = ({
   searchText,
