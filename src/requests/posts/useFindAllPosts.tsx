@@ -9,7 +9,7 @@ import { QUERY_KEYS } from '../keys';
 const queryFn = (): Promise<Post[]> =>
   new Promise((resolve) => {
     setTimeout(() => {
-      resolve(axios.get('http://localhost:5000/posts').then((res) => res.data));
+      resolve(axios.get('http://localhost:5001/posts').then((res) => res.data));
     }, REQUEST_DELAY);
   });
 

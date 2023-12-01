@@ -8,8 +8,7 @@ type CreatePostDTO = Omit<Post, 'id'>;
 
 const mutationFn = (data: CreatePostDTO): Promise<Post> =>
   axios
-    .post('http://localhost:5000/posts', data, {
-      method: 'POST',
+    .post('http://localhost:5001/posts', data, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
